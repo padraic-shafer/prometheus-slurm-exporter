@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_BRANCH }}
+          fetch-depth: 0  # Fetch all commits
           fetch-tags: true
 
       - name: Configure Git
@@ -34,7 +35,9 @@ jobs:
       - name: Compare Upstream
         run: |
           git diff upstream/$UPSTREAM_BRANCH $TARGET_BRANCH
+          echo --------------------------------------------
           git log --oneline upstream/$UPSTREAM_BRANCH
+          echo --------------------------------------------
           git log --oneline $TARGET_BRANCH
 
       - name: Merge Upstream
