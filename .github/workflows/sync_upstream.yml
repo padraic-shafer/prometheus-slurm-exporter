@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  UPSTREAM_URL: https://github.com/NSLS2/prometheus-slurm-exporter.git
+  UPSTREAM_URL: https://github.com/rivosinc/prometheus-slurm-exporter.git
   UPSTREAM_BRANCH: main
   TARGET_BRANCH: main
 
@@ -27,7 +27,8 @@ jobs:
       - name: Fetch Upstream
         run: |
           git remote add upstream $UPSTREAM_URL
-          git fetch upstream
+          git fetch upstream $TARGET_BRANCH
+          git fetch upstream $TARGET_BRANCH --tags
 
       - name: Merge Upstream
         run: |
@@ -37,3 +38,4 @@ jobs:
       - name: Push Changes
         run: |
           git push origin $TARGET_BRANCH
+          git push origin $TARGET_BRANCH --tags
