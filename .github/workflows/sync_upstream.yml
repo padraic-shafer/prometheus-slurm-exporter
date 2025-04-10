@@ -29,8 +29,8 @@ jobs:
       - name: Fetch Upstream
         run: |
           git remote add upstream $UPSTREAM_URL
-          git fetch upstream $TARGET_BRANCH
-          git fetch upstream $TARGET_BRANCH --tags
+          git fetch upstream $UPSTREAM_BRANCH
+          git fetch upstream $UPSTREAM_BRANCH --tags
 
       - name: Compare Upstream
         run: |
