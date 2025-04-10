@@ -1,0 +1,39 @@
+name: Sync this Fork with its Upstream
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Runs daily at 08:00 UTC
+  workflow_dispatch:
+
+env:
+  UPSTREAM_URL: https://github.com/NSLS2/prometheus-slurm-exporter.git
+  UPSTREAM_BRANCH: main
+  TARGET_BRANCH: main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          branch: $TARGET_BRANCH
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "noreply@github.com"
+
+      - name: Fetch Upstream
+        run: |
+          git remote add upstream $UPSTREAM_URL
+          git fetch upstream
+
+      - name: Merge Upstream
+        run: |
+          git checkout $TARGET_BRANCH
+          git merge upstream/$UPSTREAM_BRANCH --ff-only
+
+      - name: Push Changes
+        run: |
+          git push origin $TARGET_BRANCH
