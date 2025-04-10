@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          branch: $TARGET_BRANCH
+          ref: $TARGET_BRANCH
 
       - name: Configure Git
         run: |
