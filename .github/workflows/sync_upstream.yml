@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: $TARGET_BRANCH
+          fetch-tags: true
 
       - name: Configure Git
         run: |
