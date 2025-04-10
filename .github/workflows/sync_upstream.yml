@@ -31,6 +31,12 @@ jobs:
           git fetch upstream $TARGET_BRANCH
           git fetch upstream $TARGET_BRANCH --tags
 
+      - name: Compare Upstream
+        run: |
+          git diff upstream/$UPSTREAM_BRANCH $TARGET_BRANCH
+          git log --oneline upstream/$UPSTREAM_BRANCH
+          git log --oneline $TARGET_BRANCH
+
       - name: Merge Upstream
         run: |
           git checkout $TARGET_BRANCH
