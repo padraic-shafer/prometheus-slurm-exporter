@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ TARGET_BRANCH }}
+          ref: ${{ env.TARGET_BRANCH }}
           fetch-tags: true
 
       - name: Configure Git
