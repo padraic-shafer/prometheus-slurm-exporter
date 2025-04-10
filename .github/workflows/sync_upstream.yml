@@ -8,7 +8,7 @@ on:
 env:
   UPSTREAM_URL: https://github.com/rivosinc/prometheus-slurm-exporter.git
   UPSTREAM_BRANCH: main
-  TARGET_BRANCH: main
+  TARGET_BRANCH: upstream
 
 jobs:
   sync:
